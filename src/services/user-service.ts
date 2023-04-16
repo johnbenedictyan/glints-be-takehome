@@ -1,7 +1,6 @@
-import userRepo from '@repos/user-repo';
-import { IUser } from '@models/user-model';
-import { UserNotFoundError } from '@shared/errors';
-
+import { IUser } from "@models/user-model";
+import userRepo from "@repos/user-repo";
+import { UserNotFoundError } from "@shared/errors";
 
 // **** Functions **** //
 
@@ -41,12 +40,11 @@ async function _delete(id: number): Promise<void> {
   return userRepo.delete(id);
 }
 
-
 // **** Export default **** //
 
 export default {
-    getAll,
-    addOne,
-    updateOne,
-    delete: _delete,
+  getAll,
+  addOne,
+  updateOne,
+  delete: _delete,
 } as const;

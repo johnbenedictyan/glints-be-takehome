@@ -1,8 +1,8 @@
-import './loadEnv';
+import commandLineArgs from 'command-line-args';
 import find from 'find';
 import Jasmine from 'jasmine';
-import commandLineArgs from 'command-line-args';
 import logger from 'jet-logger';
+import './loadEnv';
 
 
 // Setup command line options

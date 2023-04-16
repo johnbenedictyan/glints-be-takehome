@@ -1,5 +1,4 @@
-import logger from 'jet-logger';
-
+import logger from "jet-logger";
 
 /**
  * Print an error object if it's truthy. Useful for testing.

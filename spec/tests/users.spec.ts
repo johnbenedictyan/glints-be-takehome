@@ -1,13 +1,12 @@
-import supertest from 'supertest';
 import StatusCodes from 'http-status-codes';
-import { SuperTest, Test, Response } from 'supertest';
+import supertest, { Response, SuperTest, Test } from 'supertest';
 
-import app from '@server';
-import userRepo from '@repos/user-repo';
 import User, { IUser } from '@models/user-model';
-import { pErr } from '@shared/functions';
+import userRepo from '@repos/user-repo';
 import { p as userPaths } from '@routes/user-router';
+import app from '@server';
 import { ParamMissingError, UserNotFoundError } from '@shared/errors';
+import { pErr } from '@shared/functions';
 
 
 // **** Variables **** //
@@ -34,30 +33,30 @@ const dummyUserData = {
 
 // Test messages
 const msgs = {
-  getUsersSuccess: `should return a JSON object with all the users and a status code of 
+  getUsersSuccess: `should return a JSON object with all the users and a status code of
     "${OK}" if the request was successful.`,
   getUsersBad: `should return a JSON object containing an error message and a status code of
     "${BAD_REQUEST}" if the request was unsuccessful.`,
   addUserSuccess: `should return a status code of "${CREATED}" if the request was successful.`,
-  addUserFailedMissingParam: `should return a JSON object with an error message of 
-    "${ParamMissingError.Msg}" and a status code of "${BAD_REQUEST}" if the user param was 
+  addUserFailedMissingParam: `should return a JSON object with an error message of
+    "${ParamMissingError.Msg}" and a status code of "${BAD_REQUEST}" if the user param was
     missing.`,
-  addUserFallbackErr: `should return a JSON object with an error message and a status code 
+  addUserFallbackErr: `should return a JSON object with an error message and a status code
     of "${BAD_REQUEST}" if the request was unsuccessful.`,
   updateSuccess: `should return a status code of "${OK}" if the request was successful.`,
-  updateParamMissing: `should return a JSON object with an error message of 
-    "${ParamMissingError.Msg}" and a status code of "${BAD_REQUEST}" if the user param was 
+  updateParamMissing: `should return a JSON object with an error message of
+    "${ParamMissingError.Msg}" and a status code of "${BAD_REQUEST}" if the user param was
     missing.`,
-  updateUserNotFound: `should return a JSON object with the error message of 
-    ${UserNotFoundError.Msg} and a status code of "${UserNotFoundError.HttpStatus}" if the id 
+  updateUserNotFound: `should return a JSON object with the error message of
+    ${UserNotFoundError.Msg} and a status code of "${UserNotFoundError.HttpStatus}" if the id
     was not found.`,
-  updateFallbackErr: `should return a JSON object with an error message and a status code of 
+  updateFallbackErr: `should return a JSON object with an error message and a status code of
     "${BAD_REQUEST}" if the request was unsuccessful.`,
   deleteSuccessful: `should return a status code of "${OK}" if the request was successful.`,
-  deleteUserNotFound: `should return a JSON object with the error message of 
-    ${UserNotFoundError.Msg} and a status code of "${UserNotFoundError.HttpStatus}" if the id was 
+  deleteUserNotFound: `should return a JSON object with the error message of
+    ${UserNotFoundError.Msg} and a status code of "${UserNotFoundError.HttpStatus}" if the id was
     not found.`,
-  deleteFallbackErr: `should return a JSON object with an error message and a status code of 
+  deleteFallbackErr: `should return a JSON object with an error message and a status code of
     "${BAD_REQUEST}" if the request was unsuccessful.`,
 };
 
@@ -80,7 +79,7 @@ describe('user-router', () => {
     done();
   });
 
-  // Test get users 
+  // Test get users
   describe(`"GET:${getUsersPath}"`, () => {
 
     // Get all users

@@ -7,7 +7,6 @@ export interface IUser {
   email: string;
 }
 
-
 // **** Functions **** //
 
 /**
@@ -31,7 +30,6 @@ function copy(user: IUser): IUser {
     name: user.name,
   };
 }
-
 
 // **** Export default **** //
 

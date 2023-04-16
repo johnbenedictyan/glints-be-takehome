@@ -1,11 +1,9 @@
-import StatusCodes from 'http-status-codes';
-import { Request, Response, Router } from 'express';
-
-import userService from '@services/user-service';
-import { ParamMissingError } from '@shared/errors';
-import { IReq } from 'src/types/express';
-import { IUser } from '@models/user-model';
-
+import { IUser } from "@models/user-model";
+import userService from "@services/user-service";
+import { ParamMissingError } from "@shared/errors";
+import { Request, Response, Router } from "express";
+import StatusCodes from "http-status-codes";
+import { IReq } from "src/types/express";
 
 // **** Variables **** //
 
@@ -15,12 +13,11 @@ const { CREATED, OK } = StatusCodes;
 
 // Paths
 export const p = {
-  get: '/all',
-  add: '/add',
-  update: '/update',
-  delete: '/delete/:id',
+  get: "/all",
+  add: "/add",
+  update: "/update",
+  delete: "/delete/:id",
 } as const;
-
 
 // **** Routes **** //
 
@@ -28,14 +25,14 @@ export const p = {
  * Get all users
  */
 router.get(p.get, async (_: Request, res: Response) => {
-    const users = await userService.getAll();
-    return res.status(OK).json({users});
+  const users = await userService.getAll();
+  return res.status(OK).json({ users });
 });
 
 /**
  * Add one user
  */
-router.post(p.add, async (req: IReq<{user: IUser}>, res: Response) => {
+router.post(p.add, async (req: IReq<{ user: IUser }>, res: Response) => {
   const { user } = req.body;
   // Check param
   if (!user) {
@@ -49,7 +46,7 @@ router.post(p.add, async (req: IReq<{user: IUser}>, res: Response) => {
 /**
  * Update one user
  */
-router.put(p.update, async (req: IReq<{user: IUser}>, res: Response) => {
+router.put(p.update, async (req: IReq<{ user: IUser }>, res: Response) => {
   const { user } = req.body;
   // Check param
   if (!user) {
@@ -73,7 +70,6 @@ router.delete(p.delete, async (req: Request, res: Response) => {
   await userService.delete(Number(id));
   return res.status(OK).end();
 });
-
 
 // **** Export default **** //
 
